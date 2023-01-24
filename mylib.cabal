@@ -1,0 +1,75 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           mylib
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/githubuser/mylib#readme>
+homepage:       https://github.com/githubuser/mylib#readme
+bug-reports:    https://github.com/githubuser/mylib/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2023 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/mylib
+
+library
+  exposed-modules:
+      Import
+      Reverse
+      Run
+      Types
+      Util
+  other-modules:
+      Paths_mylib
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.11 && <10
+    , rio >=0.1.12.0
+    , vector >=0.12.0.3
+  default-language: Haskell2010
+
+executable mylib-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_mylib
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.11 && <10
+    , mylib
+    , optparse-simple
+    , rio >=0.1.12.0
+    , vector >=0.12.0.3
+  default-language: Haskell2010
+
+test-suite mylib-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      ReverseSpec
+      Paths_mylib
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.11 && <10
+    , hspec
+    , mylib
+    , rio >=0.1.12.0
+    , vector >=0.12.0.3
+  default-language: Haskell2010
