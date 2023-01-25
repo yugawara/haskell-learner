@@ -48,11 +48,6 @@ instance Monad (Parser i e) where
 string :: Eq i => [i] -> Parser i e [i]
 string = traverse char
 
-
-class Applicative f => Alternative f where
-  empty :: f a
-  (<|>) :: f a -> f a -> f a
-
 instance (Eq i, Eq e) => Alternative (Parser i e) where
   empty = Parser $ \_ -> Left [Empty]
 
