@@ -64,3 +64,4 @@ fmap (f.g) == fmap f  . fmap g
   it "" $ pure id <*> [1] `shouldBe` [1]
   it "" $ pure (+4) <*> [1] `shouldBe` pure ((+4) 1)
   it "" $ [(+1)] <*> pure 2 `shouldBe` pure ($ 2) <*> [(+1)]
+  it "" $ pure (.) <*> [(+1)] <*> [(+2)] <*> [3] `shouldBe` [(+1)] <*>( [(+2)] <*> [3])
