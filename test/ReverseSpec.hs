@@ -1,11 +1,11 @@
 module ReverseSpec where
-
 -- import Reverse
 import Test.Hspec
 import Data.List
 import Test.Hspec.QuickCheck
 import MyStuff
 
+l=State (\s -> (12, s))
 spec :: Spec
 spec = do
   -- describe "myReverse" $ do
@@ -65,3 +65,4 @@ fmap (f.g) == fmap f  . fmap g
   it "" $ pure (+4) <*> [1] `shouldBe` pure ((+4) 1)
   it "" $ [(+1)] <*> pure 2 `shouldBe` pure ($ 2) <*> [(+1)]
   it "" $ pure (.) <*> [(+1)] <*> [(+2)] <*> [3] `shouldBe` [(+1)] <*>( [(+2)] <*> [3])
+
