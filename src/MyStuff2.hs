@@ -11,8 +11,10 @@ data Error i e
 
 
 newtype Parser i e a = Parser
-  { runParser :: [i] -> Either [Error i e] (a, [i])
+  {
+    runParser :: [i] -> Either [Error i e] (a, [i])
   }
+
 satisfy :: (i -> Bool) -> Parser i e i
 satisfy predicate = Parser $ \input ->
   case input of
@@ -26,7 +28,6 @@ char i = satisfy (== i)
 
 instance Applicative (Parser i e) where
   pure a = Parser $ \input -> Right (a, input)
-
   Parser f <*> Parser p = Parser $ \input -> do
     (f', rest) <- f input
     (output, rest') <- p rest
@@ -39,18 +40,15 @@ instance Functor (Parser i e) where
 
 instance Monad (Parser i e) where
   return = pure
-
   Parser p >>= k = Parser $ \input -> do
     (output, rest) <- p input
     runParser (k output) rest
-
 
 string :: Eq i => [i] -> Parser i e [i]
 string = traverse char
 
 instance (Eq i, Eq e) => Alternative (Parser i e) where
   empty = Parser $ \_ -> Left [Empty]
-
   Parser l <|> Parser r = Parser $ \input ->
     case l input of
       Left err ->
