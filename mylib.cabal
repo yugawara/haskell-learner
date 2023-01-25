@@ -27,6 +27,7 @@ library
   exposed-modules:
       Import
       MyStuff
+      MyStuff2
       Reverse
       Run
       Types

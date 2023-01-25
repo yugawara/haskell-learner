@@ -1,7 +1,10 @@
 module MyStuff where
 
 import Control.Monad ( ap, liftM )
+import MyStuff2
 
+newtype D = D {runD :: Int} deriving (Show, Eq)
+newtype D2 = D2 {runD2 :: Int -> Int}
 newtype State s a = State { runState :: s -> (a, s) }
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
