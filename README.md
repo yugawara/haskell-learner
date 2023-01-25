@@ -1,5 +1,8 @@
 # mylib
 
+
+ stack test --file-watch --fast
+
 ## Execute
 
 * Run `stack exec -- mylib-exe` to see "We're inside the application!"
