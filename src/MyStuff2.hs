@@ -12,7 +12,7 @@ data Error i e
 
 newtype Parser i e a = Parser
   {
-    runParser :: [i] -> Either [Error i e] (a, [i])
+    runParser2 :: [i] -> Either [Error i e] (a, [i])
   }
 
 satisfy :: (i -> Bool) -> Parser i e i
@@ -42,7 +42,7 @@ instance Monad (Parser i e) where
   return = pure
   Parser p >>= k = Parser $ \input -> do
     (output, rest) <- p input
-    runParser (k output) rest
+    runParser2 (k output) rest
 
 string :: Eq i => [i] -> Parser i e [i]
 string = traverse char
@@ -56,3 +56,6 @@ instance (Eq i, Eq e) => Alternative (Parser i e) where
           Left err' -> Left $ nub $ err <> err'
           Right (output, rest) -> Right (output, rest)
       Right (output, rest) -> Right (output, rest)
+
+parser :: (Parser Char String String)
+parser = (string "hello") <|> (string "greetings")

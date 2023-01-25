@@ -30,6 +30,7 @@ library
       MyStuff2
       Reverse
       Run
+      SExp
       Types
       Util
   other-modules:
@@ -39,7 +40,9 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.11 && <10
+    , megaparsec
     , rio >=0.1.12.0
+    , scientific
     , vector >=0.12.0.3
   default-language: Haskell2010
 
@@ -52,9 +55,11 @@ executable mylib-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.11 && <10
+    , megaparsec
     , mylib
     , optparse-simple
     , rio >=0.1.12.0
+    , scientific
     , vector >=0.12.0.3
   default-language: Haskell2010
 
@@ -71,7 +76,9 @@ test-suite mylib-test
       QuickCheck
     , base >=4.11 && <10
     , hspec
+    , megaparsec
     , mylib
     , rio >=0.1.12.0
+    , scientific
     , vector >=0.12.0.3
   default-language: Haskell2010
