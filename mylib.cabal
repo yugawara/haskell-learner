@@ -33,6 +33,7 @@ library
       SExp
       Types
       Util
+      Wood
   other-modules:
       Paths_mylib
   hs-source-dirs:
