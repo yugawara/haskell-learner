@@ -11,7 +11,8 @@
     (head (caar rest))
     )(cons `(,(+ 14 (+ span head)) ,(+ 14 head)) rest))
 ))))
+(define round-integer (lambda (x) (flonum->fixnum (round (+ 0.0 x)))))
 (define round-measurements (lambda (raw) (cond
     ((eq? raw '()) '())
-    (#t (cons (list (round (caar raw)) (round (cadar raw))) (round-measurements (cdr raw))))
+    (#t (cons (list (round-integer (caar raw)) (round-integer (cadar raw))) (round-measurements (cdr raw))))
     )))
