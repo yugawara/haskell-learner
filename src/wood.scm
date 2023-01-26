@@ -16,3 +16,22 @@
     ((eq? raw '()) '())
     (#t (cons (list (round-integer (caar raw)) (round-integer (cadar raw))) (round-measurements (cdr raw))))
     )))
+
+(define string-append2 (lambda (strings) (cond
+    ((eq? strings '()) "")
+    (#t (string-append (car strings) (string-append2 (cdr strings)))))))
+
+(define text-output (lambda (measurements) (cond
+    ((eq? measurements '()) "")
+    (#t
+    (let
+    ((first (number->string (caar measurements)))
+    (second (number->string (cadar measurements))))
+    (string-append2 (list second "-" first "\n" (text-output (cdr measurements))))
+    )))))
+(display (string-append2 (list
+"Vertical\n"
+(text-output (reverse (round-measurements (start-end v-span v-cols))))
+"\nHorizontal\n"
+(text-output (reverse (round-measurements (start-end h-span h-cols))))
+)))
