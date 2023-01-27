@@ -1,3 +1,4 @@
+-- https://serokell.io/blog/parser-combinators-in-haskell
 module SExp where
 
 import Data.Scientific
