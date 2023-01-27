@@ -71,3 +71,7 @@ fmap (f.g) == fmap f  . fmap g
   it "" $ runState ((pure id) <*> (pure id) <*> (pure 1 )) 10 `shouldBe` runState (pure 1) 10
   it "" $ runState ((MyStuff.State (\x -> ((+9),x+1)))<*>(pure (5::Int))::MyStuff.State Int Int) (10::Int) `shouldBe`  (14,11)
   -- it "" $ parseTest atom "(foo -42 \"with \\\" now!\")" `shouldBe` SSExp (SId (Identifier {getId = "foo"})) [SInteger (-42),SString "with \" now!"]
+
+  it "" $ runParser atom "testSource" "()" `shouldBe` Right (SSExp [])
+  it "" $ runParser atom "testSource" "a" `shouldBe` Right (SId (Identifier "a"))
+  -- it "" $ runParser atom "testSource" "'()" `shouldBe` Right (SId (Identifier "a-"))

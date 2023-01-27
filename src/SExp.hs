@@ -9,19 +9,17 @@ import Text.Megaparsec
 import Text.Megaparsec.Char
 import qualified Text.Megaparsec.Char.Lexer as L
 
-newtype Identifier = Identifier
-  { getId :: String
-  }
-  deriving (Show)
+newtype Identifier = Identifier String
+  deriving (Show, Eq)
 
 data SExp
-  = SSExp SExp [SExp] -- (foo 0 "hello" bar), (bar (baz 1)), (foo)
+  = SSExp [SExp] -- (foo 0 "hello" bar), (bar (baz 1)), (foo)
   | SInteger Integer -- 42
   | SString String -- "hello, world"
   | SBool Bool -- false, true
   | SId Identifier -- foo
   | SDouble Double -- 42f, 3.1415f
-  deriving (Show)
+  deriving (Show, Eq)
 
 type Parser =
   Parsec
@@ -70,14 +68,14 @@ str = label "string" $ lexeme $ char '"' *> manyTill L.charLiteral (char '"')
 identifier :: Parser Identifier
 identifier = label "identifier" $ lexeme $ do
   first <- letterChar <|> char '_'
-  rest <- many $ alphaNumChar <|> char '_'
+  rest <- many $ alphaNumChar <|> char '_'<|> char '-'
   pure $ Identifier $ first : rest
 
-sexp :: Parser (SExp, [SExp])
+sexp :: Parser [SExp]
 sexp =
   label "S-expression" $
     lexeme $
-      between (lexeme (char '(')) (char ')') ((,) <$> atom <*> many atom)
+      between (lexeme (char '(')) (char ')') (many atom)
 
 numeric :: Parser SExp
 numeric = label "number" $ lexeme $ do
@@ -96,7 +94,7 @@ atom = choice
   [ SBool <$> bool
   , SString <$> str
   , SId <$> identifier
-  , uncurry SSExp <$> sexp
+  ,  SSExp <$> sexp
   , numeric
   ]
 
