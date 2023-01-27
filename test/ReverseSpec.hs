@@ -1,11 +1,13 @@
 module ReverseSpec where
 -- import Reverse
 import Test.Hspec
-import Data.List
 import Test.Hspec.QuickCheck
-import MyStuff
+import MyStuff ( State(..), Tree(..) )
+import SExp
+import Text.Megaparsec
 
-l=State (\s -> (12, s))
+
+l=MyStuff.State (\s -> (12, s))
 spec :: Spec
 spec = do
   -- describe "myReverse" $ do
@@ -67,4 +69,5 @@ fmap (f.g) == fmap f  . fmap g
   it "" $ pure (.) <*> [(+1)] <*> [(+2)] <*> [3] `shouldBe` [(+1)] <*>( [(+2)] <*> [3])
   it "" $ runState ((pure id) <*> (pure id) <*> (pure 1 )) 10 `shouldBe` runState (pure 1) 10
   it "" $ runState ((pure id) <*> (pure id) <*> (pure 1 )) 10 `shouldBe` runState (pure 1) 10
-  it "" $ runState ((State (\x -> ((+9),x+1)))<*>(pure (5::Int))::State Int Int) (10::Int) `shouldBe`  (14,11)
+  it "" $ runState ((MyStuff.State (\x -> ((+9),x+1)))<*>(pure (5::Int))::MyStuff.State Int Int) (10::Int) `shouldBe`  (14,11)
+  -- it "" $ parseTest atom "(foo -42 \"with \\\" now!\")" `shouldBe` SSExp (SId (Identifier {getId = "foo"})) [SInteger (-42),SString "with \" now!"]

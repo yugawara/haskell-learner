@@ -4,8 +4,6 @@ import Control.Monad ( ap, liftM )
 import MyStuff2
 import SExp
 
-newtype D = D {runD :: Int} deriving (Show, Eq)
-newtype D2 = D2 {runD2 :: Int -> Int}
 newtype State s a = State { runState :: s -> (a, s) }
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
@@ -61,3 +59,4 @@ instance Functor Tree where
 
 
 
+data D a = D a deriving Show
