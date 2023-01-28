@@ -5,6 +5,8 @@
 module Json
 where
 
+import qualified Data.ByteString as B
+
 import Control.Applicative
 import Data.ByteString (ByteString)
 import qualified Data.HashMap.Strict as H
@@ -135,3 +137,6 @@ jstring_ =
     <$> takeWhileP (Just "string char") (/= DOUBLE_QUOTE)
     <* char DOUBLE_QUOTE
 {-# INLINE jstring_ #-}
+
+
+readNextJs=B.readFile "next.js.package.json"
