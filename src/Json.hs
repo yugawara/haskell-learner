@@ -21,7 +21,7 @@ import Text.Megaparsec.Byte
 import qualified Text.Megaparsec.Byte.Lexer as L
 
 import Control.DeepSeq
-import qualified Data.HashMap.Strict as H
+import Data.HashMap.Strict
 import Data.Scientific (Scientific)
 import Data.Text (Text)
 import Data.Vector (Vector)
