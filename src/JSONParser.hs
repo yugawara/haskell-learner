@@ -1,11 +1,7 @@
 -- start snippet imports
 -- https://abhinavsarkar.net/code/jsonparser.html
 {-# LANGUAGE DeriveGeneric #-}
--- start snippet imports
--- https://abhinavsarkar.net/code/jsonparser.html
 {-# LANGUAGE LambdaCase #-}
--- start snippet imports
--- https://abhinavsarkar.net/code/jsonparser.html
 {-# LANGUAGE TupleSections #-}
 
 module JSONParser where
