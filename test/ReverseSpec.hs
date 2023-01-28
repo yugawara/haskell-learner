@@ -1,11 +1,16 @@
+{-# LANGUAGE OverloadedStrings #-}
 module ReverseSpec where
 -- import Reverse
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import MyStuff ( State(..), Tree(..) )
 import SExp
+import Json
 import Text.Megaparsec
+import Data.List.NonEmpty
+import qualified Data.HashMap.Strict as H
 
+import qualified Data.ByteString as B
 
 l=MyStuff.State (\s -> (12, s))
 spec :: Spec
@@ -74,4 +79,5 @@ fmap (f.g) == fmap f  . fmap g
 
   it "" $ runParser atom "testSource" "()" `shouldBe` Right (SSExp [])
   it "" $ runParser atom "testSource" "a" `shouldBe` Right (SId (Identifier "a"))
-  -- it "" $ runParser atom "testSource" "'()" `shouldBe` Right (SId (Identifier "a-"))
+  it "" $ runParser atom "testSource" "a-" `shouldBe` Right (SId (Identifier "a-"))
+  it "" $ parseJson  ("{\"a\":3} ":: B.ByteString) `shouldBe` Object (H.fromList [("a", Number 3.0)])

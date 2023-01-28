@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Import
+      Json
       MyStuff
       MyStuff2
       Reverse
@@ -40,9 +41,13 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.11 && <10
+    , bytestring
+    , deepseq
     , megaparsec
     , rio >=0.1.12.0
     , scientific
+    , text
+    , unordered-containers
     , vector >=0.12.0.3
   default-language: Haskell2010
 
@@ -55,11 +60,15 @@ executable mylib-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.11 && <10
+    , bytestring
+    , deepseq
     , megaparsec
     , mylib
     , optparse-simple
     , rio >=0.1.12.0
     , scientific
+    , text
+    , unordered-containers
     , vector >=0.12.0.3
   default-language: Haskell2010
 
@@ -75,10 +84,14 @@ test-suite mylib-test
   build-depends:
       QuickCheck
     , base >=4.11 && <10
+    , bytestring
+    , deepseq
     , hspec
     , megaparsec
     , mylib
     , rio >=0.1.12.0
     , scientific
+    , text
+    , unordered-containers
     , vector >=0.12.0.3
   default-language: Haskell2010

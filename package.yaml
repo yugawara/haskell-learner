@@ -25,6 +25,12 @@ dependencies:
 - vector >= 0.12.0.3
 - megaparsec
 - scientific
+- text
+- bytestring
+- unordered-containers
+- scientific
+- deepseq
+- bytestring
 
 ghc-options:
 - -Wall
