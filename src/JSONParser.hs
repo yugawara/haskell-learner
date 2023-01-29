@@ -19,6 +19,15 @@ import Test.QuickCheck hiding (Negative, Positive)
 
 -- end snippet imports
 
+
+data DD a = DD a | EE a  | Nothing2 deriving (Eq, Show)
+instance Functor DD where
+  fmap f (DD x) = DD (f x)
+  fmap f (EE x) = EE (f x)
+  fmap f Nothing2 = Nothing2
+
+
+
 -- start snippet type
 data JValue
   = JNull

@@ -6,12 +6,12 @@ import Test.Hspec.QuickCheck
 import MyStuff ( State(..), Tree(..) )
 import SExp
 import Json
-import Text.Megaparsec
+import Text.Megaparsec as M
 import Data.List.NonEmpty
 import qualified Data.HashMap.Strict as H
 
 import qualified Data.ByteString as B
-
+import JSONParser
 l=MyStuff.State (\s -> (12, s))
 spec :: Spec
 spec = do
@@ -77,7 +77,13 @@ fmap (f.g) == fmap f  . fmap g
   it "" $ runState ((MyStuff.State (\x -> ((+9),x+1)))<*>(pure (5::Int))::MyStuff.State Int Int) (10::Int) `shouldBe`  (14,11)
   -- it "" $ parseTest atom "(foo -42 \"with \\\" now!\")" `shouldBe` SSExp (SId (Identifier {getId = "foo"})) [SInteger (-42),SString "with \" now!"]
 
-  it "" $ runParser atom "testSource" "()" `shouldBe` Right (SSExp [])
-  it "" $ runParser atom "testSource" "a" `shouldBe` Right (SId (Identifier "a"))
-  it "" $ runParser atom "testSource" "a-" `shouldBe` Right (SId (Identifier "a-"))
+  it "" $ M.runParser atom "testSource" "()" `shouldBe` Right (SSExp [])
+  it "" $ M.runParser atom "testSource" "a" `shouldBe` Right (SId (Identifier "a"))
+  it "" $ M.runParser atom "testSource" "a-" `shouldBe` Right (SId (Identifier "a-"))
   it "" $ parseJson  ("{\"a\":3} ":: B.ByteString) `shouldBe` Object (H.fromList [("a", Number 3.0)])
+
+  prop "" $ \x -> (fmap (a . b)  (DD (x::Integer))) `shouldBe` ((fmap a . fmap b)  (DD (x::Integer)))
+  prop "" $ \x -> (fmap (a . b)  (EE (x::Integer))) `shouldBe` ((fmap a . fmap b)  (EE (x::Integer)))
+  it "" $  (fmap (a . b)  Nothing2) `shouldBe` (fmap a . fmap b)  Nothing2
+a = (+ 3)
+b = (* 5)
