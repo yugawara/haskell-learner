@@ -32,6 +32,7 @@ dependencies:
 - deepseq
 - bytestring
 - QuickCheck
+- aeson
 
 ghc-options:
 - -Wall
