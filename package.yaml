@@ -33,6 +33,7 @@ dependencies:
 - bytestring
 - QuickCheck
 - aeson
+- network
 
 ghc-options:
 - -Wall

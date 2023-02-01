@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Local Port Listener</title>
+  </head>
+  <body>
+    <h1>Local Port Listener</h1>
+    <p>Received Message: <span id="message"></span></p>
+
+    <script>
+      // Create a new WebSocket object
+      const socket = new WebSocket("ws://localhost:1234");
+
+      // Handle incoming messages
+      socket.onmessage = event => {
+        // Update the message on the page
+        document.getElementById("message").innerHTML = event.data;
+      };
+    </script>
+  </body>
+</html>

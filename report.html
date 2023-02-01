@@ -1,0 +1,45 @@
+
+    <html>
+      <head>
+        <title>Package.json Report</title>
+      </head>
+      <body>
+        <h1>Package.json Report</h1>
+        <p>The following information was extracted from your package.json file:</p>
+        <ul>
+          <li><strong>Name:</strong> themakergroup-v2</li>
+          <li><strong>Version:</strong> 2.0.0</li>
+          <li><strong>Description:</strong> undefined</li>
+          <li><strong>Main:</strong> undefined</li>
+          <li><strong>Scripts:</strong>
+            <ul>
+  <li>test-integration: npm run db:reset-test && npm run -w npt-graphql test:integration</li><li>test-login: npm run test:login -w npt-graphql</li><li>db:status: npm run db:status -w db-migrations</li><li>db:migrate: npm run db:migrate -w db-migrations</li><li>db:watch: npm run db:watch -w db-migrations</li><li>db:commit: npm run db:commit -w db-migrations</li><li>db:uncommit: npm run db:uncommit -w db-migrations</li><li>db:reset: docker compose down && docker compose up db -d && npm run db:reset -w db-migrations</li><li>db:reset-test: npm run db:reset-test -w db</li><li>db:dump: npm run db:dump -w db-migrations</li><li>graphql:update-schema: npm run -w npt-graphql update-schema</li><li>client:codegen: npm run -w npt-client codegen</li><li>client:codegen:watch: npm run -w npt-client codegen -- --watch</li><li>client:graphql-codegen: npm run graphql:update-schema && npm run client:codegen</li><li>client:graphql-codegen:watch: npm run graphql:update-schema && npm run client:codegen:watch</li><li>staging-update-secrets: npm run staging-update-secrets -w eks</li><li>prod-update-secrets: npm run prod-update-secrets -w eks</li>
+            </ul>
+          </li>
+          <li><strong>Dependencies:</strong>
+            <ul>
+  <li>husky: ^7.0.0<br><strong>Interpreted Meaning:</strong> The caret (^) symbol in the version number means that you can use a version that is compatible with the specified version. The caret ensures that you are using the latest version that is backwards compatible with the specified version.
+   <br><strong>Interpreted Meaning:</strong> 
+                <ul>
+                  <li>Major version: ^7</li>
+                  <li> Minor version: 0</li>
+                  <li> Patch version: 0</li>
+                </ul>
+     </li>
+   <br><strong>Interpreted Meaning:</strong>  </li>
+   <li>lint-staged: 12.4.0<br><strong>Interpreted Meaning:</strong> The exact version number means that you must use the exact version specified, no newer or older versions are allowed.
+   <br><strong>Interpreted Meaning:</strong> 
+                <ul>
+                  <li>Major version: 12</li>
+                  <li> Minor version: 4</li>
+                  <li> Patch version: 0</li>
+                </ul>
+     </li>
+   <br><strong>Interpreted Meaning:</strong>  </li>
+   
+            </ul>
+          </li>
+        </ul>
+      </body>
+    </html>
+  
